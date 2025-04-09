@@ -62,7 +62,12 @@ class FamilyStructure:
         ## Recorre la lista y obtén el miembro con el id proporcionado
         for member in self._members:
             if member["id"] == id:
-                return member["first_name"]+" "+member["last_name"], member["id"], member["lucky_numbers"]
+                return {
+                    "name": f"{member['first_name']} {member['last_name']}",
+                    "id": member["id"],
+                    "age": member["age"],
+                    "lucky_numbers": member["lucky_numbers"]
+                }
         return None
 
     def get_all_members(self):
