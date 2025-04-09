@@ -56,7 +56,7 @@ def add_family_member():
         return jsonify({"msg": "Missing data"}), 400
     
     new_member = {
-        "id": jackson_family._generate_id(),
+        "id": body.get("id") or jackson_family._generate_id(),
         "first_name": body["first_name"],
         "last_name": jackson_family.last_name,
         "age": body["age"],
@@ -64,7 +64,7 @@ def add_family_member():
     }
 
     jackson_family.add_member(new_member)
-    return jsonify(new_member), 201
+    return jsonify(new_member), 200
 
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def delete_family_member(member_id):
